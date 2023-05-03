@@ -31,7 +31,7 @@
 
   const theAllSong = [] // empty array to store selected hex numbers
 
-  for (let i = 0; i < 20000; i++) {
+  for (let i = 0; i < 1000; i++) {
     let randomIndex
     if (Math.random() < 0.5) {
       randomIndex = Math.floor(Math.random() * hexNumbersBelowFFFF.length)

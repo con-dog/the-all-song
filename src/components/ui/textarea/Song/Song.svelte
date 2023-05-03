@@ -4,12 +4,12 @@
   let textarea
 
   // ASCII + special ?
-  const numbers = [33, 44, 45, 46, 58, 59, 63, 65533]
+  const numbers = [33, 44, 46, 58, 59, 65533]
 
-  // // Upper case
-  // for (let i = 65; i <= 90; i++) {
-  //   numbers.push(i)
-  // }
+  // Upper case
+  for (let i = 65; i <= 90; i++) {
+    numbers.push(i)
+  }
 
   // Lower case
   for (let i = 97; i <= 122; i++) {
@@ -17,7 +17,7 @@
   }
 
   for (let i = 128768; i <= 128895; i++) {
-    numbers.push(i)
+    if (![128887, 128888, 128889, 128890].includes(i)) numbers.push(i)
   }
 
   const hexNumbers = numbers.map((n) => {
@@ -31,9 +31,9 @@
 
   const theAllSong = [] // empty array to store selected hex numbers
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 20000; i++) {
     let randomIndex
-    if (Math.random() < 0.6) {
+    if (Math.random() < 0.5) {
       randomIndex = Math.floor(Math.random() * hexNumbersBelowFFFF.length)
     } else {
       randomIndex = Math.floor(Math.random() * hexNumbers.length)
@@ -42,11 +42,11 @@
   }
 
   onMount(() => {
-    for (let i = 0; i < theAllSong.length; i++) {
+    for (let i = 0; i < theAllSong.length; i += 1) {
       const unicodeChar = String.fromCodePoint(
         parseInt('0x' + theAllSong[i], 16)
       )
-      textarea.value += unicodeChar
+      textarea.value = `${textarea.value} ${unicodeChar}`
     }
   })
 </script>
@@ -55,8 +55,8 @@
 
 <style lang="scss">
   textarea {
-    font-family: 'Arial Unicode MS', Arial, sans-serif;
-    font-size: 1rem;
+    // font-family: 'Arial Unicode MS', Arial, sans-serif;
+    font-size: 1.5rem;
     padding: 0;
     margin: 0;
     border: none;
